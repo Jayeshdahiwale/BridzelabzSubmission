@@ -46,12 +46,18 @@ cat access.log | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' |sort
 
 9)Ans:
 
-read foldername
-if [ -d $foldername ]
+                                                                             
+echo "Please enter the name of folder you want to find"
+read folderName
+
+if [ -d $folderName ]
         then
-                rm -rf $foldername
+                echo "Folder already exist"
+else
+        mkdir $folderName
 fi
-mkdir $foldername
+
+
 
 10) Ans:
 
