@@ -1,0 +1,351 @@
+====================================================DAY 5 Prob 01===================================================== 
+
+
+1) Ans: echo $((RANDOM % 10))
+
+2) Ans:echo $((RANDOM % 6 +1))
+
+
+
+4)Ans: 
+    	sum=0
+    	count=0
+	for num in {1..5..1}
+	do
+        	p=$((RANDOM % 99 + 10))
+        	sum=$(($sum + $p))
+        	count=$(($count + 1))
+	done
+	RESULT=$(awk "BEGIN {printf \"%.2f\",${sum}/${count}}")
+        echo "SUM :"$sum
+        echo "Average:"$RESULT
+
+5) a)Ans:
+read -p "Enter the value in inch: " num
+
+RESULT=$(awk "BEGIN {printf \"%.2f\",${num}/12}")
+echo $RESULT
+
+b) and c) Ans:
+
+l=60
+b=40
+p=$(( $l * $b ))
+area=$(awk "BEGIN {printf \"%.4f\",0.3048 * 0.3048 * ${l} * ${b}}")
+echo $area "mtsq"
+echo "area of 5 such plots" $(awk "BEGIN {printf \"%.4f\", 5 * ${area}}")
+
+12)Ans:
+read -p "Enter "1" for ft to in "2" for in to ft "3" for ft to mt "4" for mt to ft :" num
+case $num in
+  1)
+    read -p "Enter the value want to convert :" value
+    result=$(awk "BEGIN {printf \"%.4f\",${value} * 12}")
+    echo $result
+    ;;
+  2)
+    read -p "Enter the value want to convert :" value
+    result=$(awk "BEGIN {printf \"%.4f\",${value} * 0.083}")
+    echo $result
+    ;;
+  3)
+    read -p "Enter the value want to convert :" value
+    result=$(awk "BEGIN {printf \"%.4f\",${value} * 0.3048}")
+    echo $result
+    ;;
+  4)
+    read -p "Enter the value want to convert:" value
+    result=$(awk "BEGIN {printf \"%.4f\",${value} * 3.2808}")
+    echo $result
+    ;;
+
+  *)
+    echo "Enter Valid No"
+    ;;
+esac
+
+
+=================================================DAY 5 Prob 02=============================================================
+
+
+1)Ans:
+max=0
+min=1000
+for i in {1..3..1}
+do
+        j=$(( RANDOM % 900 + 100))
+        if [ $j -lt $min ]
+                then
+                        min=$j
+        fi
+        if [ $j -gt $max ]
+                then
+                        max=$j
+        fi
+done
+echo "minimum :" $min
+
+2)Ans:
+read -p "Enter the day and Month:" day month
+march_days="20 21 22 23 24 25 26 27 28 29 30 31"
+june_days="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
+if [ $month == "April" ]
+  then
+    echo "True"
+
+elif [ $month == "May" ]
+  then
+    echo "True"
+
+elif [ $month == "March" ]
+  then
+    p="False"
+    q="True"
+    for i in $march_days
+    do
+      if [ $i == $day ]
+        then
+          p=$q
+      fi
+    done
+    echo $p
+elif [ $month == "June" ]
+  then
+    p="False"
+    q="True"
+    for i in $june_days
+    do
+      if [ $i == $day ]
+        then
+          p=$q
+      fi
+    done
+    echo $p
+else
+        echo "False"
+fi
+
+3)Ans:
+
+read -p "Enter the year: " year
+if [ $(($year % 400)) == 0 ]
+  then
+    echo "This is a leap year"
+elif [ $(($year % 100)) == 0 ]
+  then
+    echo "This is not a leap year"
+elif [ $(($year % 4)) == 0 ]
+  then
+    echo "This is a leap year"
+else
+  echo "This is not a leap year"
+fi
+
+4)
+Ans:
+if [ $(( RANDOM % 2 )) == 0 ]
+  then
+    echo "Head"
+else
+  echo "Tail"
+fi
+
+5)Ans:
+read -p "Enter the single digit number :" num
+if [ $num == 1 ]
+  then
+    echo "One"
+elif [ $num == 2 ]
+  then
+    echo "Two"
+elif [ $num == 3 ]
+  then
+    echo "Three"
+elif [ $num == 4 ]
+  then
+    echo "Four"
+elif [ $num == 5 ]
+  then
+    echo "Five"
+elif [ $num == 6 ]
+  then
+    echo "Six"
+elif [ $num == 7 ]
+  then
+    echo "Seven"
+elif [ $num == 8 ]
+  then
+    echo "Eight"
+elif [ $num == 9 ]
+  then
+    echo "Nine"
+
+else
+  echo "Input out of range"
+fi
+
+
+6)Ans:
+
+read -p "Enter the day number :" num
+if [ $num == 1 ]
+  then
+    echo "Sunday"
+elif [ $num == 2 ]
+  then
+    echo "Monday"
+elif [ $num == 3 ]
+  then
+    echo "Tueday"
+elif [ $num == 4 ]
+  then
+    echo "Wednesday"
+elif [ $num == 5 ]
+  then
+    echo "Thursday"
+elif [ $num == 6 ]
+  then
+    echo "Friday"
+elif [ $num == 7 ]
+  then
+    echo "Saturday"
+
+else
+  echo "Input out of range"
+fi
+
+7)Ans:
+read -p "Enter the any of the number among (1,10,100,1000) :" num
+if [ $num == 1 ]
+  then
+    echo "One"
+elif [ $num == 10 ]
+  then
+    echo "Ten"
+elif [ $num == 100 ]
+  then
+    echo "Hundred"
+elif [ $num == 1000 ]
+  then
+    echo "Thousand"
+
+else
+  echo "Input out of range"
+fi
+
+8)Ans:
+ 
+read -p "Enter the three numbers :" num1 num2 num3
+a=`echo $(( num1 + num2 * num3 ))`
+b=`echo $(( num3 + num1 * num2 ))`
+c=`echo $(( num1 % num2 + num3 ))`
+d=`echo $(( num1 * num2 + num3 ))`
+list="$a $b $c $d"
+max=0
+min=10000000
+for i in $list
+do
+  if [ $i -ge $max ]
+    then
+      max=$i
+  fi
+  if [ $i -le $min ]
+    then
+      min=$i
+  fi
+done
+echo "Maximum :"$max
+echo "Minimum :"$min
+
+
+9)Ans:
+
+
+read -p "Enter the single digit number :" num
+case $num in
+  1)
+    echo "One"
+    ;;
+  2)
+    echo "Two"
+    ;;
+  3)
+    echo "Three"
+    ;;
+  4)
+    echo "Four"
+    ;;
+  5)
+    echo "Five"
+    ;;
+  6)
+    echo "Six"
+    ;;
+  7)
+    echo "Seven"
+    ;;
+  8)
+    echo "Eight"
+    ;;
+  9)
+    echo "Nine"
+    ;;
+  *)
+    echo "Enter Valid No"
+    ;;
+esac
+
+10)Ans:
+read -p "Enter the day no :" num
+case $num in
+  1)
+    echo "Sunday"
+    ;;
+  2)
+    echo "Monday"
+    ;;
+  3)
+    echo "Tuesday"
+    ;;
+  4)
+    echo "Wednesday"
+    ;;
+  5)
+    echo "Thursday"
+    ;;
+  6)
+    echo "Friday"
+    ;;
+  7)
+    echo "Saturday"
+    ;;
+
+  *)
+    echo "Enter Valid No"
+    ;;
+esac
+
+11)Ans:
+read -p "Enter any of the number among 1,10,100,1000:" num
+case $num in
+  1)
+    echo "One"
+    ;;
+  10)
+    echo "Ten"
+    ;;
+  100)
+    echo "Hundred"
+    ;;
+  1000)
+    echo "Thousand"
+    ;;
+
+  *)
+    echo "Enter Valid No"
+    ;;
+esac
+
+12)Ans:
+
+
